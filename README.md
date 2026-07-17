@@ -1,0 +1,170 @@
+# 🌐 AI Translator
+
+> Aplicación web de traducción construida con **Zustand**, **TypeScript** y **APIs nativas del navegador**
+
+Traductor inteligente que aprovecha las capacidades experimentales de traducción del navegador, junto con reconocimiento y síntesis de voz, para ofrecer una experiencia de traducción completa sin necesidad de APIs externas.
+
+![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=flat&logo=typescript&logoColor=white)
+![React](https://img.shields.io/badge/React-20232A?style=flat&logo=react&logoColor=61DAFB)
+![Zustand](https://img.shields.io/badge/Zustand-433E38?style=flat&logo=react&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=flat&logo=tailwind-css&logoColor=white)
+
+---
+
+## ✨ Características
+
+- 🤖 **Traducción automática** usando la Translator API experimental de Chromium
+- 🔍 **Detección automática de idioma** con la Language Detector API
+- 🎤 **Entrada por voz** mediante Web Speech API (Speech Recognition)
+- 🔊 **Reproducción de audio** de las traducciones con Speech Synthesis
+- 🔄 **Intercambio rápido** de idiomas origen/destino
+- 📋 **Copiar al portapapeles** con un solo clic
+- 🎨 **Interfaz moderna** con animaciones suaves
+- 💾 **Estado global persistente** con Zustand
+- 🌍 **Soporte para 9 idiomas**: Español, Inglés, Francés, Alemán, Italiano, Portugués, Ruso, Japonés y Chino
+
+---
+
+## 🚀 Inicio rápido
+
+### Prerequisitos
+
+- **Node.js** 18 o superior
+- **npm** o **yarn**
+- **Navegador compatible** (ver sección de compatibilidad)
+
+### Instalación
+```bash
+# Clonar el repositorio
+git clone https://github.com/tu-usuario/ai-translator.git
+cd ai-translator
+
+# Instalar dependencias
+npm install
+
+# Ejecutar en modo desarrollo
+npm run dev
+```
+
+La aplicación estará disponible en `http://localhost:3000`
+
+### Scripts disponibles
+```bash
+npm run dev      # Inicia el servidor de desarrollo
+npm run build    # Crea el build de producción
+npm run start    # Inicia el servidor de producción
+npm run lint     # Ejecuta el linter
+npm run type-check # Verifica los tipos de TypeScript
+```
+
+---
+
+## 🏗️ Arquitectura del proyecto
+```
+src/
+├── app/
+│   ├── layout.tsx           # Layout principal
+│   └── page.tsx             # Página principal
+├── components/
+│   ├── LanguageSelector.tsx # Selector de idiomas
+│   ├── TextArea.tsx         # Área de texto para entrada/salida
+│   ├── VoiceButton.tsx      # Botón de reconocimiento de voz
+│   └── SpeakButton.tsx      # Botón de síntesis de voz
+└── store/
+    ├── translatorStore.ts   # Store de Zustand
+    ├── translatorTypes.ts   # Definiciones de tipos
+    └── translatorConstants.ts # Constantes (idiomas disponibles)
+
+```
+
+---
+
+## 🧠 Cómo funciona
+
+### Flujo de traducción
+
+1. **Entrada de texto**: El usuario escribe o dicta texto mediante reconocimiento de voz
+2. **Detección de idioma**: Si el idioma origen es "auto", se detecta automáticamente
+3. **Traducción**: Se utiliza la Translator API del navegador para traducir
+4. **Síntesis de voz**: Opcionalmente, el resultado puede ser reproducido en voz alta
+
+### Zustand Store
+
+El estado global de la aplicación se maneja con Zustand e incluye:
+```typescript
+interface TranslatorState {
+  sourceLanguage: string;
+  targetLanguage: string;
+  sourceText: string;
+  translatedText: string;
+  isLoading: boolean;
+  error: string | null;
+  
+  // Acciones
+  setSourceLanguage: (lang: string) => void;
+  setTargetLanguage: (lang: string) => void;
+  setSourceText: (text: string) => void;
+  swapLanguages: () => void;
+  translate: () => Promise<void>;
+  detectLanguage: () => Promise<void>;
+}
+```
+
+---
+
+## 🌍 APIs utilizadas
+
+| API | Descripción | Estado | Navegadores |
+|-----|-------------|--------|-------------|
+| **Translator API** | Traducción en el navegador | 🟡 Experimental | Edge Dev/Canary |
+| **Language Detector** | Detección de idioma | 🟡 Experimental | Edge Dev/Canary |
+| **Speech Recognition** | Reconocimiento de voz | 🟢 Estable | Chrome, Edge, Safari |
+| **Speech Synthesis** | Síntesis de voz | 🟢 Estable | Todos los modernos |
+
+### Compatibilidad de navegadores
+
+Para obtener la mejor experiencia, se recomienda:
+
+- ✅ **Microsoft Edge** (versión Dev o Canary) - Todas las funciones
+- ✅ **Google Chrome** - Reconocimiento y síntesis de voz
+- ⚠️ **Firefox** - Solo síntesis de voz
+- ⚠️ **Safari** - Funcionalidad limitada
+
+> **Nota**: Las APIs de traducción y detección son experimentales y solo están disponibles en versiones específicas de navegadores basados en Chromium.
+
+---
+
+## ⚙️ Configuración
+
+### Idiomas soportados
+
+Los idiomas están definidos en `translatorConstants.ts`:
+```typescript
+export const LANGUAGES = [
+  { code: 'es', name: 'Español' },
+  { code: 'en', name: 'English' },
+  { code: 'fr', name: 'Français' },
+  { code: 'de', name: 'Deutsch' },
+  // ... más idiomas
+];
+```
+
+---
+
+## 👨‍💻 Autor
+
+**Federico Guzmán**  
+Frontend Developer | Typescript/Javascript | Next.js/React | Zustand/Redux | TailwindCSS/SaSS | i18n | Firebase | Postgres | Express | Sequelize | MCP
+
+- 🌐 [Portfolio](https://fedecodelab.vercel.app/)
+- 💼 [LinkedIn](https://www.linkedin.com/in/federico-guzman/)
+- 🐙 [GitHub](https://github.com/FedeCodeLab)
+- 📍 La Rioja, Argentina
+
+---
+
+<div align="center">
+
+**Si te gustó este proyecto, dale una ⭐️**
+
+</div>
